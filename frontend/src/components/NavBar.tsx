@@ -29,7 +29,7 @@ const NavBar = ({ resetState }: NavBarProps) => {
             >
                 <div>Segment Anything</div>
                 <div className="text-xs font-normal text-center text-gray-500 lg:text-sm md:text-start">
-                    Research by Meta AI
+                    Research by Carnegie Mellon University
                 </div>
             </NavLink>
 

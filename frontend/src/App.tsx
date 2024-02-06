@@ -14,6 +14,7 @@ import { Route, Routes } from "react-router-dom";
 import { MODEL_DIR, MULTI_MASK_MODEL_DIR } from "./enviroments";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
+import ImageUpload from "./components/ImageUpload";
 
 // Define image, embedding and model paths
 
@@ -337,8 +338,8 @@ const App = () => {
     data: File | URL,
     options?: { shouldNotFetchAllModel?: boolean; shouldDownload?: boolean }
   ) => {
-    console.log("handleSelectedImage data",data);
-    
+    console.log("handleSelectedImage data", data);
+
     try {
       const shouldNotFetchAllModel = options?.shouldNotFetchAllModel;
       const shouldDownload = options?.shouldDownload;
@@ -467,27 +468,40 @@ const App = () => {
   // return <Stage />
   return (
     <>
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <div className={`flex flex-col h-full overflow-hidden`}>
-            <NavBar resetState={handleResetState} />
-            <Stage
-              scale={modelScale}
-              handleResetState={handleResetState}
-              handleMagicErase={handleMagicErase}
-              handleImage={handleImage}
-              hasClicked={hasClicked}
-              setHasClicked={setHasClicked}
-              handleSelectedImage={handleSelectedImage}
-              image={image}
-            />
-            <Footer />
-          </div>
-        }
-      />
-    </Routes>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className={`flex flex-col h-full overflow-hidden`}>
+              <NavBar resetState={handleResetState} />
+              {/* <Stage
+                scale={modelScale}
+                handleResetState={handleResetState}
+                handleMagicErase={handleMagicErase}
+                handleImage={handleImage}
+                hasClicked={hasClicked}
+                setHasClicked={setHasClicked}
+                handleSelectedImage={handleSelectedImage}
+                image={image}
+              /> */}
+              <h1>Upload flow</h1>
+              <ImageUpload />
+              <Footer />
+            </div>
+          }
+        />
+        <Route
+          path="/upload"
+          element={
+            <div className={`flex flex-col h-full overflow-hidden`}>
+              <NavBar resetState={handleResetState} />
+              <h1>Upload flow</h1>
+              <ImageUpload />
+              <Footer />
+            </div>
+          }
+        />
+      </Routes>
     </>
   )
 };

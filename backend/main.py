@@ -8,20 +8,22 @@ from embedded import make_embedding
 
 app = FastAPI()
 
+
 @app.post("/ai/embedded/{file_name}")
-async def embedded(request: Request, file_name:str):
+async def embedded(request: Request, file_name: str):
     body = await request.body()
-    
+
     root = f"{os.path.abspath(os.path.join(os.getcwd(), os.pardir))}/frontend/src/assets/gallery/{file_name}.npy"
-    checkpoint = "sam_vit_b.pth"
+    checkpoint = "sam_vit_b_01ec64.pth"
     model_type = "vit_b"
     print(root)
     make_embedding(body, root, checkpoint, model_type)
-    
+
     return {"npy": f"{file_name}.npy"}
 
+
 @app.post("/ai/embedded/all/{file_name}")
-async def embedded(request: Request, file_name:str):
+async def embedded(request: Request, file_name: str):
     return Response(status_code=200)
 
 
